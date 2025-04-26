@@ -37,7 +37,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
 
     // 브로커 서비스 실행
     let (shutdown_tx, mut shutdown_rx) = mpsc::channel::<()>(1);
-    let server_handle = tokio::spawn(async move {
+
+    // server handle
+    let _ = tokio::spawn(async move {
         broker_clone.run().await.unwrap();
     });
 
